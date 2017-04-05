@@ -62,6 +62,23 @@ Now you can tail the logs from the tftp container:
     docker logs -f rsyslog.service
 
 
+### Papertrail Access
+
+This `rsyslog` image comes equipped with basic configuration for sending
+container logs to Papertrail, which works alongside the dynamic configuration
+described in the environment variables section below.
+
+### Environment Variables
+
+This image includes a run script that supports a few specialized environment
+variables, which are written to a dynamic `rsyslog` config file before the 
+daemon is started. The following variables are supported:
+
+* `LOGSPOUT_DEST_URL`: Required to enable automatic log passthrough (e.g. to Papertrail).
+
+* `LOGSPOUT_FORMAT_STRING`: Allows you to change the formatting of the logs being sent to 
+`LOGSPOUT_DEST_URL`. By default, the logs are forwarded as-is.
+
 ### Use systemd for automatic startup
 
 Review and potentially modify the sample systemd unit file at
